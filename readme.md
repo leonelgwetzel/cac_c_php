@@ -1,2 +1,0 @@
-# CHALLENGE PHP - API REST Productos
-
