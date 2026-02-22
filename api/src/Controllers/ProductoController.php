@@ -73,12 +73,45 @@ class ProductoController {
      * @return void
      */
     public function obtenerProducto(array $params){
-        
-        # Recupero el id entregado por fastroutes a los parametros y solicito el producto
-        $id = $params['id'];
 
-        $resultado = $this->modelo->obtenerProductos($id);
-    
-        return RespuestasJSON::respuesta('Listado de productos recuperado con éxito', true, $resultado);
+        try {
+            # Recupero el id entregado por fastroutes a los parametros y solicito el producto
+            $id = $params['id'];
+
+            $resultado = $this->modelo->obtenerProductos($id);
+        
+            return RespuestasJSON::respuesta('Listado de productos recuperado con éxito', true, $resultado);
+        
+        } catch (\Exception $e) {
+            RespuestasJSON::respuesta($e->getMessage(), false, null, 404);
+        }
+        
+        
+    }
+
+    /**
+     * Eliminar un producto (borrado fisico)
+     * @param array $params (variables entregadas por fastroutes)
+     * @return void
+     */
+    public function borrarProducto(array $params){
+
+        try {
+
+            # Recupero el id entregado por fastroutes a los parametros
+            $id = $params['id'];
+
+            $resultado = $this->modelo->borrarProducto($id);
+
+            if(!$resultado){
+                throw new \Exception('Error al intentar eliminar producto en la base de datos');
+            }
+        
+            return RespuestasJSON::respuesta('Producto eliminado correctamente', true);
+
+        } catch (\Exception $e) {
+            RespuestasJSON::respuesta($e->getMessage(), false, null, 500);
+        }
+
     }
 }

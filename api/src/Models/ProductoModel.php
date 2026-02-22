@@ -60,6 +60,11 @@ class ProductoModel {
             $query->execute([':id' => $id]);
             $producto = $query->fetch();
 
+            # Si el producto no existe, retorno la excepción
+            if (!$producto) {
+                throw new \Exception('Producto no encontrado');
+            }
+
             # Agrego el precio en dolares
             return self::agregarPrecioUsd($producto);
         }
@@ -74,6 +79,28 @@ class ProductoModel {
         # Retorno los productos con el precio en dolares incluido
         return array_map([self::class, 'agregarPrecioUsd'], $productos);
     }
+
+    
+    /**
+     * Baorrar un producto
+     * @param int $id
+     * @return bool
+     */
+    public function borrarProducto($id):bool {
+
+        $query = $this->pdo->prepare('
+            DELETE from productos WHERE id = :id
+        ');
+
+        $resultado = $query->execute([
+            ':id' => $id
+        ]);
+
+        return $resultado;
+    }
+
+
+    // FUNCIONES AUXILIARES
 
     /**
      * Agregar precio en dolares al producto indicado haciendo uso de la constante que posee el valor del dolar

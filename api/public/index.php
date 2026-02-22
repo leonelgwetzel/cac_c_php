@@ -15,6 +15,14 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 
     // Nuevo producto
     $r->addRoute('POST', '/producto', [ProductoController::class, 'crearProducto']);
+
+    // Editar producto
+    $r->addRoute('PUT', '/producto/{id:\d+}', [ProductoController::class, 'crearProducto']);
+
+    // Eliminar producto
+    $r->addRoute('DELETE', '/producto/{id:\d+}', [ProductoController::class, 'borrarProducto']);
+        
+
 });
 
 $method = $_SERVER['REQUEST_METHOD'];
