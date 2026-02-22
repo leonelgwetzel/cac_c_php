@@ -1,2 +1,4 @@
 config.env
 db_data/
+api/vendor/
+api/composer.lock
