@@ -1,10 +1,20 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use App\Controllers\ProductoController;
+use App\Views\RespuestasJSON;
+
+# Definición de rutas
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/test', function() {
-        echo json_encode(['message' => 'Funciona!']);
-    });
+
+    // Listado de productos
+    $r->addRoute('GET', '/productos', [ProductoController::class, 'listadoProductos']);
+
+    // Producto especifico
+    $r->addRoute('GET', '/productos/{id:\d+}', [ProductoController::class, 'obtenerProducto']);
+
+    // Nuevo producto
+    $r->addRoute('POST', '/producto', [ProductoController::class, 'crearProducto']);
 });
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -16,16 +26,19 @@ header('Content-Type: application/json');
 
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        http_response_code(404);
-        echo json_encode(['error' => 'Ruta no encontrada']);
+        RespuestasJSON::respuesta('Ruta inexistente', false,null, 404);
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-        http_response_code(405);
-        echo json_encode(['error' => 'Método no permitido']);
+        RespuestasJSON::respuesta('Método no permitido', false,null,405);
         break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
-        ($handler)($vars);
+        if (is_callable($handler)) {
+            $handler($vars);
+        } else {
+            [$class, $method] = $handler;
+            (new $class())->$method($vars);
+        }
         break;
 }
