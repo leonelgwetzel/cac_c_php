@@ -26,7 +26,7 @@ class Database {
             );
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            RespuestasJSON::response('Error al conectarse a la base de datos', 500);
+            RespuestasJSON::respuesta('Error al conectarse a la base de datos', false,null, '500');
             exit;
         }
     }
