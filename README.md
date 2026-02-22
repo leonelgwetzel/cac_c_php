@@ -2,12 +2,14 @@
 
 API REST para Challenge técnico con PHP nativo, MySQL y Docker.
 
-## Técnologías y requerimientos
-
-* Docker.
-* PHP 8.2 Apache (Img. docker: php:8.2-apache).
+## Tecnologías
+* PHP 8.2 Apache (Img. docker: php:8.2-apache)
 * MySQL (Img. docker: mysql:8.0)
-*
+* Enrutador [FastRoute](https://github.com/nikic/FastRoute)
+
+## Requerimientos
+* Docker
+* Composer
 
 ## Instalación y configuración
 
