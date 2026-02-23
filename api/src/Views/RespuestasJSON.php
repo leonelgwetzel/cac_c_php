@@ -25,9 +25,9 @@ class RespuestasJSON {
         }else{
             $respuesta['errores'] = $detalle;
         }
-
+    
         # Si hay datos a incluir lo sumo en el array
-        if($datos){
+        if ($datos !== null) {
             $respuesta['datos'] = $datos;
         }
 
