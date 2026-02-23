@@ -76,4 +76,28 @@ class Request {
 
     }
 
+    /**
+     * Validar request parcial
+     */
+    public static function validarRequestParcial($camposRequeridos,$body = null){
+
+        # Si no se recibe body de la petición, lo recupero
+        if (!$body) {
+            $body = self::getBody();
+        }
+
+        $errores = [];
+
+        # Filtro los campos para quedarme solamente con las claves que corresponden a los campos requeridos
+        $camposRecibidos = array_intersect_key($camposRequeridos, $body);
+
+        # Si no se recibieron campos requeridos notifico
+        if (empty($camposRecibidos)) {
+            $errores[] = "Debe enviar al menos un campo para poder actualizar el producto";
+            return ['errores' => $errores, 'datos' => $body];
+        }
+
+        # Valido los campos
+        return self::validarRequest($camposRecibidos, $body);
+    }
 }
