@@ -73,16 +73,14 @@ PRECIO_USD=1430
 }
 ```
 ## BASE DE DATOS
-> Nota:  En el config.env estan definidas las variables de entorno que refieren a la conexión de la db.
+
 **DATOS DE CONEXIÓN:**
 - `SERVER`: localhost,
 - `PORT`: 3307,
 - `DB`: challenge_php,
 - `USER`: admin,
 - `PASSWORD`: Ch4lleng3Php!
-```
-
-
+> Nota:  En el config.env estan definidas las variables de entorno que refieren a la conexión de la db.
 ## FRONTEND
 
 El frontend es una interfaz simple incluida para consumir la API, por cuestión de practicidad y para evitar inconvenientes con los puertos fue implementado en el contenedor de la misma API.
