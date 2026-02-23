@@ -17,7 +17,7 @@ API REST para Challenge técnico con PHP nativo, MySQL y Docker.
 ```bash
 git clone https://github.com/leonelgwetzel/cac_c_php.git
 ```
-2) Renombrar el archivo [config.example.env](github.com/leonelgwetzel/cac_c_php/blobconfig.env.example/main/config.env.example) a config.env, si decide por otro nombre ajustar el nombre en el [docker-compose.yml](github.com/leonelgwetzel/cac_c_php/blobconfig.env.example/main/config.env.example)
+2) Renombrar el archivo config.example.env a config.env, si decide por otro nombre ajustar el nombre en el docker-compose.yml
 
 
 3) Instalar dependencias de Composer:
@@ -25,7 +25,7 @@ git clone https://github.com/leonelgwetzel/cac_c_php.git
 cd api && composer install
 ```
 
-4) Asegurarse que los puertos 8080 y 3307 esten disponibles, caso contrario elegir otros y configurar [docker-compose.yml](github.com/leonelgwetzel/cac_c_php/blobconfig.env.example/main/config.env.example).
+4) Asegurarse que los puertos 8080 y 3307 esten disponibles, caso contrario elegir otros y configurar docker-compose.yml
 
 5) Levantar los contenedores:
 ```bash
@@ -63,7 +63,7 @@ PRECIO_USD=1430
 
 
 ### Ejemplo actualización de producto [PUT]
-#### **NOTA: Se pueden actualizar los campos que se deseen, no es necesario enviar todos 
+> Nota:  Se pueden actualizar los campos que se deseen, no es necesario enviar todos 
 **Body:**
 ```json
 {
@@ -72,4 +72,14 @@ PRECIO_USD=1430
     "precio": 1000.00 
 }
 ```
+## FRONTEND
+
+El frontend es una interfaz simple incluida para consumir la API, por cuestión de practicidad y para evitar inconvenientes con los puertos fue implementado en el contenedor de la misma API.
+
+### Acceso
+Con los contenedores levantados, ingresá desde el navegador a:
+
+- Ruta: `http://localhost:8080/frontend/index.html`
+
+> Nota: Si el puerto fue modificado en `docker-compose.yml`, reemplazá `8080` por el puerto configurado.
 
