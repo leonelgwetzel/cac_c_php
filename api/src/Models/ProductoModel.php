@@ -98,6 +98,38 @@ class ProductoModel {
 
         return $resultado;
     }
+    
+    /**
+     * Actualizar un producto
+     * @param int $id
+     * @param array $datos
+     * @return array
+     */
+    public function actualizarProducto($id,$datos): array    {
+
+        # Obtengo los campos a actualizar y genero el string del set para la query
+        $campos = array_keys($datos);
+        $set = [];
+        foreach ($campos as $campo) {
+            $set[] = "$campo = :$campo";
+        }
+        $set = implode(', ', $set);
+        
+        $query = $this->pdo->prepare("UPDATE productos SET $set WHERE id = :id");
+        $datos[':id'] = $id;
+
+        $resultado = $query->execute($datos);
+
+        if (!$resultado) {
+            throw new \Exception('Error al actualizar producto en la base de datos');
+        }
+
+        # Obtengo el producto actualizado
+        $producto = self::obtenerProductos($id);
+
+        # Agrego el precio en dolares
+        return self::agregarPrecioUsd($producto);
+    }
 
 
     // FUNCIONES AUXILIARES

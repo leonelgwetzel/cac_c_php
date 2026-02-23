@@ -17,7 +17,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/producto', [ProductoController::class, 'crearProducto']);
 
     // Editar producto
-    $r->addRoute('PUT', '/producto/{id:\d+}', [ProductoController::class, 'crearProducto']);
+    $r->addRoute('PUT', '/producto/{id:\d+}', [ProductoController::class, 'actualizarProducto']);
 
     // Eliminar producto
     $r->addRoute('DELETE', '/producto/{id:\d+}', [ProductoController::class, 'borrarProducto']);
