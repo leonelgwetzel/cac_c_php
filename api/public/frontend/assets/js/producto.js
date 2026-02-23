@@ -131,7 +131,7 @@ async function cargarProducto(){
         // Si cargue, añado el objeto al estado y listo
         if(accion == 'cargar' && response.resultado){
             state.productos.push(response.datos);
-            await listarProductos();
+            await verificarExistenciaProductos();
         }
 
         // Si edite, modifico el objeto en el estado y vuelvo a listar
