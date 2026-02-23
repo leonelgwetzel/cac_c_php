@@ -1,11 +1,22 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../src/Core/constants.php';
 
 use App\Controllers\ProductoController;
 use App\Views\RespuestasJSON;
 
 # Definición de rutas
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+
+    // Valor del dolar
+    $r->addRoute('GET', '/dolar', function() {
+        $datos = [
+            'valor_usd' => PRECIO_USD
+        ];
+
+        return RespuestasJSON::respuesta('Cotización del dolar recuperada con éxito', true,$datos,200);
+        
+    });
 
     // Listado de productos
     $r->addRoute('GET', '/productos', [ProductoController::class, 'listadoProductos']);
