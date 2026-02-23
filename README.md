@@ -32,7 +32,44 @@ cd api && composer install
 docker compose up -d --build
 ```
 ## Variable de entorno PRECIO_USD
-En el archivo `.env` podés modificar el valor del precio del dolar al día de la fecha.
+En el archivo `config.env` podés modificar el valor del precio del dolar al día de la fecha.
 ```
 PRECIO_USD=1430
 ```
+
+## Endpoints
+
+* URL Por defecto (si no se cambió el puerto) : ```http://localhost:8080/```
+* [GET] - Listado de productos: ```/productos```
+* [GET] - Obtener producto: ```/productos/{id}```
+* [POST] - Crear producto: ```/producto```
+* [PUT] - Actualizar producto: ```/producto/{id}```
+* [DELETE] - Eliminar producto: ```/producto/{id}```
+
+
+### Ejemplo creación de producto [POST]
+**Body:**
+```json
+{
+    "nombre": "Producto",
+    "descripcion": "Descripción",
+    "precio": 1000.00 
+}
+```
+**Campos:**
+- `nombre`: String, requerido
+- `descripcion`: String, requerido
+- `precio`: Float, requerido
+
+
+### Ejemplo actualización de producto [PUT]
+#### **NOTA: Se pueden actualizar los campos que se deseen, no es necesario enviar todos 
+**Body:**
+```json
+{
+    "nombre": "Producto",
+    "descripcion": "Descripción",
+    "precio": 1000.00 
+}
+```
+
