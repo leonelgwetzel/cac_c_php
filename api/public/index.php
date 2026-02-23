@@ -25,13 +25,13 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/productos/{id:\d+}', [ProductoController::class, 'obtenerProducto']);
 
     // Nuevo producto
-    $r->addRoute('POST', '/producto', [ProductoController::class, 'crearProducto']);
+    $r->addRoute('POST', '/productos', [ProductoController::class, 'crearProducto']);
 
     // Editar producto
-    $r->addRoute('PUT', '/producto/{id:\d+}', [ProductoController::class, 'actualizarProducto']);
+    $r->addRoute('PUT', '/productos/{id:\d+}', [ProductoController::class, 'actualizarProducto']);
 
     // Eliminar producto
-    $r->addRoute('DELETE', '/producto/{id:\d+}', [ProductoController::class, 'borrarProducto']);
+    $r->addRoute('DELETE', '/productos/{id:\d+}', [ProductoController::class, 'borrarProducto']);
         
 
 });

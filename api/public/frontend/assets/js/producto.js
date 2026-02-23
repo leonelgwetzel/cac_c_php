@@ -43,7 +43,7 @@ async function eliminarProducto(id) {
 
         // Peticiono
         toggleSpinner(true);
-        const endpoint = `producto/${id}`;
+        const endpoint = `productos/${id}`;
         const resultado = await customFetch(endpoint,'DELETE');
 
         // Elimino del estado y actualizo la lista
@@ -122,7 +122,7 @@ async function cargarProducto(){
     // Peticiono
     const idProducto = accion == 'cargar' ? null : document.querySelector('#formProducto #idProducto').value;
     const metodo = accion == 'cargar' ? 'POST' : 'PUT';
-    endpoint = accion == 'cargar' ? 'producto' : `producto/${idProducto}` 
+    endpoint = accion == 'cargar' ? 'productos' : `productos/${idProducto}` 
 
     try {
         
