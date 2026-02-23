@@ -11,6 +11,8 @@ services:
       - db
   db:
     image: mysql:8.0
+    environment:
+      TZ: America/Argentina/Buenos_Aires
     ports:
       - "3307:3306"
     env_file:
