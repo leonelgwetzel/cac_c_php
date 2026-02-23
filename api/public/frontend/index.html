@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge PHP</title>
+
+    <!-- Links -->
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <!-- Cdns -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.6/sweetalert2.min.css">
+
+
+</head>
+<body>
+    <!-- Spinner -->
+    <div id="spinner" class="spinner-overlay d-none">
+        <div class="spinner-border text-light" role="status"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="https://www.php.net/images/logos/new-php-logo.svg" alt="PHP" height="30" class="me-2">
+                    Challenge API REST  
+                </a>
+                <div class="text-white d-flex align-items-center badge bg-success">
+                    <i class="fa-solid fa-dollar-sign me-2"></i>
+                    Cotización dólar:
+                    <span id="cotizacion" class="mx-3">0</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container-fluid p-5 mt-3">
+
+        <div class="d-flex justify-content-between">
+            <h1 class="h3"><i class="fa-solid fa-boxes-stacked me-3"></i> Listado de productos</h1>
+            <button id="nuevoProducto" class="btn btn-primary px-3 rounded-pill">Agregar producto</button>
+        </div>
+        <hr>
+        <!-- Listado de productos, se rellena dinamicamente en main.js -->
+        <div id="alertaProductos" class="alert alert-warning" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+            No hay productos cargados para mostrar.
+        </div>
+        <section id="listadoProductos" class="row">
+            
+        </section>
+
+    </main>
+
+    <!-- Modal de carga / edición de producto -->
+    <div class="modal fade" id="modalProducto" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitulo">Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formProducto" data-accion="crear">
+                        <input type="hidden" id="idProducto">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Precio (ARS)</label>
+                            <input type="number" class="form-control" id="precio" step="0.01">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.6/sweetalert2.min.js"></script>
+    
+    <script src="./assets/js/utils/utils.js"></script>
+    <script src="./assets/js/producto.js"></script>
+    <script src="./assets/js/listado.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
