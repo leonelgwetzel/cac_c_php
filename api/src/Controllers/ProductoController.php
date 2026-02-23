@@ -46,7 +46,7 @@ class ProductoController {
             $productoFinal = ProductoModel::agregarPrecioUsd($datosRequest);
             $productoFinal['id'] = $idProducto;
 
-            return RespuestasJSON::respuesta('Producto insertado correctamente', true,$productoFinal,201);code: 
+            return RespuestasJSON::respuesta('Producto insertado correctamente', true,$productoFinal,201); 
 
 
         } catch (\Exception $e) {

@@ -125,7 +125,7 @@ class ProductoModel {
         }
 
         # Obtengo el producto actualizado
-        $producto = self::obtenerProductos($id);
+        $producto = $this->obtenerProductos($id);
 
         # Agrego el precio en dolares
         return self::agregarPrecioUsd($producto);
